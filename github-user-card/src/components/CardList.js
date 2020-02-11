@@ -10,11 +10,16 @@ const FollowerDiv = styled.div`
     justify-content: space-between;
     align-items: space-evenly;
 `
+const StyledHeadline = styled.h2`
+  margin: 4% auto;
+  width: 80%;
+  text-align: center;
+`
 
 const CardList = ({followerData}) => {
     return (
         <>
-            <h1>Followers</h1>
+            <StyledHeadline>Followers</StyledHeadline>
             <FollowerDiv>
             {
                 followerData.map(follower => (

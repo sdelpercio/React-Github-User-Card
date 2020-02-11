@@ -3,6 +3,19 @@ import SearchForm from './components/SearchForm';
 import UserCard from './components/UserCard';
 import CardList from './components/CardList';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const StyledTitle = styled.h1`
+  margin: 6% auto;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid black;
+`
+const StyledHeadline = styled.h2`
+  margin: 4% auto;
+  width: 80%;
+  text-align: center;
+`
 
 class App extends React.Component {
   constructor() {
@@ -47,7 +60,8 @@ class App extends React.Component {
       .then(res => {
         this.setState({
           userData: res.data,
-          userError: ''
+          userError: '',
+          userInput: ''
         });
       })
       .catch(err => {
@@ -71,6 +85,7 @@ class App extends React.Component {
         });
       });
   };
+  // handle changes for username input
   handleChanges = event => {
     this.setState({
         userInput: event.target.value
@@ -80,14 +95,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Github User Cards</h1>
+        <StyledTitle>Github User Cards</StyledTitle>
         <SearchForm 
           userInput={this.state.userInput}
           fetchInfo={this.fetchInfo}
           userError={this.state.userError}
           handleChanges={this.handleChanges} 
         />
-        <h1>User</h1>
+        <StyledHeadline>User</StyledHeadline>
         <UserCard userData={this.state.userData} />
         <CardList followerData={this.state.followerData} />
       </div>
