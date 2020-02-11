@@ -13,7 +13,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-
+    axios
+    .get('https://api.github.com/users/sdelpercio')
+    .then(res => {
+      console.log('response', res)
+      this.setState({ userData: [res.data] });
+      console.log(this.state.userData);
+    })
+    .catch(err => {
+      console.log('error', err);
+    })
   }
   
   render() {
@@ -21,7 +30,7 @@ class App extends React.Component {
       <div>
         <h1>Github User Cards</h1>
         <SearchForm />
-        <CardList />
+        <CardList userData={this.state.userData} />
       </div>
     );
   }

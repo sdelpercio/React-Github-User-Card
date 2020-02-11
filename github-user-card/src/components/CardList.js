@@ -1,9 +1,15 @@
 import React from 'react';
 import Card from './Card';
 
-const CardList = () => {
+const CardList = props => {
     return (
-        <Card />
+        <>
+        {
+            props.userData.map(user => (
+                <Card key={user.id} userData={user} />
+            ))
+        }
+        </>
     );
 }
 export default CardList;
