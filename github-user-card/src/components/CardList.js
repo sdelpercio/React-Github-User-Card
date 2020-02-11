@@ -1,15 +1,25 @@
 import React from 'react';
-import Card from './Card';
+import FollowerCard from './FollowerCard';
+import styled from 'styled-components';
 
-const CardList = props => {
+const FollowerDiv = styled.div`
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: space-evenly;
+`
+
+const CardList = ({followerData}) => {
     return (
-        <>
+        <FollowerDiv>
         {
-            props.userData.map(user => (
-                <Card key={user.id} userData={user} />
+            followerData.map(follower => (
+                <FollowerCard key={follower.id} follower={follower} />
             ))
         }
-        </>
+        </FollowerDiv>
     );
 }
 export default CardList;

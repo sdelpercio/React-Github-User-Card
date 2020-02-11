@@ -18,14 +18,12 @@ const StyledImage = styled.img`
     height: auto;
 `
 
-const UserCard = ({userData}) => {
+const FollowerCard = ({follower}) => {
     return (
         <StyledUserCard>
-            <h1>{userData.name}</h1>
-            <StyledImage src={userData.avatar_url} alt={userData.name} />
-            <h4>{userData.location}</h4>
-            <p>{userData.bio}</p>
+            <h1>{follower.login}</h1>
+            <StyledImage src={follower.avatar_url} alt={follower.login} />
         </StyledUserCard>
     );
 }
-export default UserCard;
+export default FollowerCard;

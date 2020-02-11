@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchForm from './components/SearchForm';
 import UserCard from './components/UserCard';
-// import CardList from './components/CardList';
+import CardList from './components/CardList';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -15,6 +15,7 @@ class App extends React.Component {
     };
   }
 
+  // set initial user and follower data
   componentDidMount() {
     axios
     .get('https://api.github.com/users/sdelpercio')
@@ -29,6 +30,8 @@ class App extends React.Component {
     .get(`https://api.github.com/users/sdelpercio/followers`)
     .then(res => {
       console.log('followers data', res)
+      this.setState({ followerData: res.data })
+      console.log('followers data in state', this.followerData)
     })
     .catch(err => {
       console.log('axios followers error', err);
@@ -72,7 +75,7 @@ class App extends React.Component {
           handleChanges={this.handleChanges} 
         />
         <UserCard userData={this.state.userData} />
-        {/* <CardList  /> */}
+        <CardList followerData={this.state.followerData} />
       </div>
     );
   }
