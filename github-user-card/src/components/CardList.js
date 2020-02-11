@@ -13,13 +13,16 @@ const FollowerDiv = styled.div`
 
 const CardList = ({followerData}) => {
     return (
-        <FollowerDiv>
-        {
-            followerData.map(follower => (
-                <FollowerCard key={follower.id} follower={follower} />
-            ))
-        }
-        </FollowerDiv>
+        <>
+            <h1>Followers</h1>
+            <FollowerDiv>
+            {
+                followerData.map(follower => (
+                    <FollowerCard key={follower.id} follower={follower} />
+                ))
+            }
+            </FollowerDiv>
+        </>
     );
 }
 export default CardList;

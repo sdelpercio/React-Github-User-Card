@@ -16,7 +16,7 @@ class SearchForm extends React.Component {
                     onChange={this.handleChange}
                     placeholder='enter a username'
                 />
-                <button onClick={this.props.fetchUser}>Go</button>
+                <button onClick={this.props.fetchInfo} >Go</button>
                 {this.props.userError && <p>{this.props.userError}</p>}
             </div>
         )

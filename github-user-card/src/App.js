@@ -29,9 +29,7 @@ class App extends React.Component {
     axios
     .get(`https://api.github.com/users/sdelpercio/followers`)
     .then(res => {
-      console.log('followers data', res)
       this.setState({ followerData: res.data })
-      console.log('followers data in state', this.followerData)
     })
     .catch(err => {
       console.log('axios followers error', err);
@@ -39,9 +37,11 @@ class App extends React.Component {
   }
 
   // functions for search form
-  fetchUser = event => {
+  fetchInfo = event => {
     event.preventDefault();
     console.log('fetchUser has fired');
+
+    // fetching user card
     axios
       .get(`https://api.github.com/users/${this.state.userInput}`)
       .then(res => {
@@ -57,6 +57,19 @@ class App extends React.Component {
           userError: "we could not find your username, try again"
         });
       });
+
+      // fetching follower cards
+      axios
+      .get(`https://api.github.com/users/${this.state.userInput}/followers`)
+      .then(res => {
+        this.setState({ followerData: res.data })
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          followerData: []
+        });
+      });
   };
   handleChanges = event => {
     this.setState({
@@ -70,10 +83,11 @@ class App extends React.Component {
         <h1>Github User Cards</h1>
         <SearchForm 
           userInput={this.state.userInput}
-          fetchUser={this.fetchUser}
+          fetchInfo={this.fetchInfo}
           userError={this.state.userError}
           handleChanges={this.handleChanges} 
         />
+        <h1>User</h1>
         <UserCard userData={this.state.userData} />
         <CardList followerData={this.state.followerData} />
       </div>
